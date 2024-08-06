@@ -59,10 +59,10 @@
         // 例）
         // name: s.chiba
         // email: s.chiba@gmail.com
-        let MAP = JSON.parse('<%= JSON.stringify(mapItem) %>'.replace(/&#34;/g, '"'));
+        let userList = JSON.parse('<%= JSON.stringify(mapItem) %>'.replace(/&#34;/g, '"'));
         let mapList = document.getElementById("maplist");
-        for (let i = 0; i < MAP.length; i++){
-            let mapItems = `<li>"name:"${MAP[i].name}</li><li>"email:"${MAP[i].email}</li>`;
+        for (let i = 0; i < userList.length; i++){
+            let mapItems = `<li>"name:"${userList[i].name}</li><li>"email:"${userList[i].email}</li>`;
             maplist.insertAdjacentHTML("beforeend", mapItems);
         }
     </script>
