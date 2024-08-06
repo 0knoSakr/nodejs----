@@ -56,6 +56,7 @@ app.get('/', (req, res) => {
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
     res.render('index', {
+      //MySQLデータベースはこれのこと
       users: result,
       // ⓵ こちらはapp.jsで宣言した変数をindex.ejsのscriptタグ内で使用するために登録する場所になっています。
       /*
