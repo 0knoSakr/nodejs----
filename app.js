@@ -1,6 +1,12 @@
+const express = require('express');
+const bodyParser = require('body-parser'); // body-parserを追加する
+const app = express();
+
 const path = require('path');
 const express = require('express');
 const ejs = require('ejs');
+// 8行目あたりにbody-parserの設定を追加する
+app.use(bodyParser.urlencoded({ extended: true }));
 const app = express();
 const port = 3000;
 
