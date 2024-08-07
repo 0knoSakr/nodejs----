@@ -19,6 +19,7 @@ const con = mysql.createConnection({
 
 // mysqlからデータを持ってくる
 app.get('/', (req, res) => {
+  app.use(express.static('assets'));
   const sql = "select * from users";
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
