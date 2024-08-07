@@ -18,27 +18,14 @@
             </tbody>
         </table>
         <input type="text" id="username">
-        <ul id="list2"></ul>
         <input type="button" id="searchbutton" value="検索">
         <script type="text/javascript">
 
-
-            //実務課題１
             //textboxの情報を持っている変数
-            let userData = document.getElementById("userdata");
             let userName = document.getElementById("username");
             //ボタンの情報を持っている変数
             let searchBtn = document.getElementById("searchbutton");
             let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
-            //ページを読み込んだ時に表示させる
-            document.addEventListener("DOMContentLoaded", function () {
-                //tableにjsonの情報を入れる
-                for (let i = 0; i < userList.length; i++) {
-                    let resultList = `<tr><td>${userList[i].name}</td><td>${userList[i].email}</td></tr>`;
-                    userData.insertAdjacentHTML("beforeend", resultList);
-                };
-            });
-
             searchBtn.addEventListener("click", function () {
                 while (userData.firstChild) {
                     userData.removeChild(userData.firstChild);
@@ -46,11 +33,24 @@
                 let getValue = userName.value;
                 for (let i = 0; i < userList.length; i++) {
                     if (Number(userList[i].id) == (Number(getValue))) {
-                        let resultList = `<tr><td>${userList[i].name}</td><td>${userList[i].email}</td></tr>`;
-                        userData.insertAdjacentHTML("beforeend", resultList);
+                        let resultList2 = `<tr><td>${userList[i].name}</td><td>${userList[i].email}</td></tr>`;
+                        userData.insertAdjacentHTML("beforeend", resultList2);
+                        console.log(userList[i]);
                     }
+                    // console.log(userList[i].id);
                 };
             })
+
+            //textboxの情報を持っている変数
+            let userData = document.getElementById("userdata");
+            //ページを読み込んだ時に表示させる
+            document.addEventListener("DOMContentLoaded", function () {
+                //tableにjsonの情報を入れる
+                for (let i = 0; i < userList.length; i++) {
+                    let resultList = `<tr><td>${userList[i].name}</td><td>${userList[i].email}</td><td><a href="/edit/${userList[i].id}">更新</a></td><td><a href="/delete/${userList[i].id}">削除</td></tr>`;
+                    userData.insertAdjacentHTML("beforeend", resultList);
+                };
+            });
         </script>
     </body>
 </html>
