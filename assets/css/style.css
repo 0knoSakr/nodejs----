@@ -6,3 +6,10 @@
   margin-bottom: 0;
   margin-top: 0;
 }
+
+.namebox:first-child{
+  margin-right: 5px;
+}
+.emailbox:first-child{
+  margin-right: 5px;
+}

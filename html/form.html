@@ -3,20 +3,75 @@
     <head>
         <meta charset="UTF-8">
         <title>入力フォーム</title>
-        <link type="text/css" rel="stylesheet" href="../css/style.css">
+        <link type="text/css" rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <h1>入力フォーム</h1>
         <form action="/" method="POST">
             <ul class="namebox">
                 <li>name</li>
-                <li><input type="text" name="name" placeholder="お名前を入力してください"></li>
+                <li><input type="text" name="name" placeholder="お名前を入力してください" id="newname"></li>
             </ul>
+            <p id="errorname"></p>
             <ul class="emailbox">
                 <li>email</li>
-                <li><input type="email"></li>
+                <li><input type="email" id="newemail"></li>
             </ul>
-            <button type="submit">送信</button>
+            <p id="erroremail"></p>
+            <button type="submit" id="subbutton" disabled>送信</button>
         </form>
+        <script type="text/javascript">
+            let validation1 = /^[a-zA-Z\.]+$/;
+            let validation2 = /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
+            //errornaemの情報
+            let errorName = document.getElementById("errorname");
+            //erroremailの情報
+            let errorEmail = document.getElementById("erroremail");
+            //buttonの情報
+            let subButton = document.getElementById("subbutton");
+            //textbox ID newnameの情報
+            let newName = document.getElementById("newname");
+            newName.addEventListener("change", function () {
+                let newNameVal = document.getElementById("newname").value;
+                if (validation1.test(newNameVal)) {
+                    errorName.innerHTML = "";
+                    console.log("test");
+                    console.log(errorName.innerHTML);
+                } else {
+                    errorName.innerHTML = "半角英語、記号の「.」のみ入力可能";
+                    errorName.style.color = "red";
+                    subButton.disabled = true;
+                }
+                if (errorName.innerHTML === "半角英語、記号の「.」のみ入力可能") {
+                    console.log("true")
+                    Y = 0
+                } else {
+                    console.log("false")
+                    Y = 1
+                }
+            })
+            let newEmail = document.getElementById("newemail");
+            newEmail.addEventListener("change", function () {
+                let newEmailVal = document.getElementById("newemail").value;
+                if (validation1.test(newEmailVal)) {
+                    errorEmail.innerHTML = "";
+                    console.log("test2");
+                } else {
+                    errorEmail.innerHTML = "半角英語、記号の「.」のみ入力可能";
+                    errorEmail.style.color = "red";
+                    subButton.disabled = true;
+                }
+                if (errorEmail.innerHTML === "半角英語、記号の「.」のみ入力可能") {
+                    console.log("true")
+                    X = 0
+                } else {
+                    console.log("false")
+                    X = 1
+                }
+                if (Y == 1 && X == 1){
+                    subButton.disabled = false;
+                }
+            })
+        </script>
     </body>
 </html>
