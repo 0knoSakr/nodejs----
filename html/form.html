@@ -23,26 +23,20 @@
         <script type="text/javascript">
             let validation1 = /^[a-zA-Z\.]+$/;
             let validation2 = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-            //errornaemの情報
             let errorName = document.getElementById("errorname");
-            //erroremailの情報
             let errorEmail = document.getElementById("erroremail");
-            //buttonの情報
             let subButton = document.getElementById("subbutton");
-            //textbox ID newnameの情報
             let newName = document.getElementById("newname");
-            //textbox ID newemailの情報
             let newEmail = document.getElementById("newemail");
 
             newName.addEventListener("change", function funName() {
                 let newNameVal = document.getElementById("newname").value;
-                //バリデーションチェック
                 if (validation1.test(newNameVal)) {
                     errorName.innerHTML = "";
                 } else {
                     errorName.innerHTML = "半角英語、記号の「.」のみ入力可能";
                     errorName.style.color = "red";
-                }//バリデーションチェックここまで
+                }
                 errorBut();
             })
 
@@ -58,12 +52,13 @@
             })
 
             function errorBut() {
-                //ボタンを作動させるかさせないか
-                if (errorName.innerHTML === "" && errorEmail.innerHTML === "") {
+                let newEmailVal = document.getElementById("newemail").value;
+                let newNameVal = document.getElementById("newname").value;
+                if (newNameVal && newEmailVal && errorName.innerHTML === "" && errorEmail.innerHTML === "") {
                     subButton.disabled = false;
                 } else {
                     subButton.disabled = true;
-                }//ボタンを作動させるかさせないかここまで
+                }
             }
 
         </script>
