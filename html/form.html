@@ -34,17 +34,6 @@
             //textbox ID newemailの情報
             let newEmail = document.getElementById("newemail");
 
-            function errorBut() {
-                //ボタンを作動させるかさせないか
-                if (errorName.innerHTML === "" && errorEmail.innerHTML === "") {
-                    console.log("true")
-                    subButton.disabled = false;
-                } else {
-                    console.log("false")
-                    subButton.disabled = true;
-                }//ボタンを作動させるかさせないかここまで
-            }
-
             newName.addEventListener("change", function funName() {
                 let newNameVal = document.getElementById("newname").value;
                 //バリデーションチェック
@@ -54,20 +43,29 @@
                     errorName.innerHTML = "半角英語、記号の「.」のみ入力可能";
                     errorName.style.color = "red";
                 }//バリデーションチェックここまで
+                errorBut();
             })
 
             newEmail.addEventListener("change", function funEmal() {
                 let newEmailVal = document.getElementById("newemail").value;
                 if (validation2.test(newEmailVal)) {
                     errorEmail.innerHTML = "";
-                    console.log("test2");
                 } else {
                     errorEmail.innerHTML = "半角英語、記号の「.」のみ入力可能";
                     errorEmail.style.color = "red";
                 }
+                errorBut();
             })
 
-            errorBut();
+            function errorBut() {
+                //ボタンを作動させるかさせないか
+                if (errorName.innerHTML === "" && errorEmail.innerHTML === "") {
+                    subButton.disabled = false;
+                } else {
+                    subButton.disabled = true;
+                }//ボタンを作動させるかさせないかここまで
+            }
+
         </script>
     </body>
 </html>
