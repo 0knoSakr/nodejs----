@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>入力フォーム</title>
+        <link type="text/css" rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>入力フォーム</h1>
+        <form action="/" method="POST">
+            <ul class="namebox">
+                <li>name</li>
+                <li class="boxgap"><input type="text" name="name" placeholder="お名前を入力してください" id="newname"></li>
+            </ul>
+            <p id="errorname"></p>
+            <ul class="emailbox">
+                <li>email</li>
+                <li class="boxgap"><input type="email" id="newemail"></li>
+            </ul>
+            <p id="erroremail"></p>
+            <button type="submit" id="subbutton" disabled>送信</button>
+        </form>
+        <script type="text/javascript">
+            let validation1 = /^[a-zA-Z\.]+$/;
+            let validation2 = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            //errornaemの情報
+            let errorName = document.getElementById("errorname");
+            //erroremailの情報
+            let errorEmail = document.getElementById("erroremail");
+            //buttonの情報
+            let subButton = document.getElementById("subbutton");
+            //textbox ID newnameの情報
+            let newName = document.getElementById("newname");
+            //textbox ID newemailの情報
+            let newEmail = document.getElementById("newemail");
+
+            newName.addEventListener("change", function funName() {
+                let newNameVal = document.getElementById("newname").value;
+                //バリデーションチェック
+                if (validation1.test(newNameVal)) {
+                    errorName.innerHTML = "";
+                } else {
+                    errorName.innerHTML = "半角英語、記号の「.」のみ入力可能";
+                    errorName.style.color = "red";
+                }//バリデーションチェックここまで
+                errorBut();
+            })
+
+            newEmail.addEventListener("change", function funEmal() {
+                let newEmailVal = document.getElementById("newemail").value;
+                if (validation2.test(newEmailVal)) {
+                    errorEmail.innerHTML = "";
+                } else {
+                    errorEmail.innerHTML = "半角英語、記号の「.」のみ入力可能";
+                    errorEmail.style.color = "red";
+                }
+                errorBut();
+            })
+
+            function errorBut() {
+                //ボタンを作動させるかさせないか
+                if (errorName.innerHTML === "" && errorEmail.innerHTML === "") {
+                    subButton.disabled = false;
+                } else {
+                    subButton.disabled = true;
+                }//ボタンを作動させるかさせないかここまで
+            }
+
+        </script>
+    </body>
+</html>

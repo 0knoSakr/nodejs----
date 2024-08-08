@@ -19,6 +19,7 @@ const con = mysql.createConnection({
 
 // mysqlからデータを持ってくる
 app.get('/', (req, res) => {
+  app.use(express.static('assets'));
   const sql = "select * from users";
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
@@ -46,6 +47,19 @@ app.post('/update/:id', (req, res) => {
     console.log(result);
     res.redirect('/');
   });
+});
+
+app.post('/', (req, res) => {
+  const sql = "INSERT INTO users SET ?"
+  con.query(sql, req.body, function(err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    res.redirect('/');
+  });
+});
+
+app.get('/create', (req, res) => {
+  res.sendFile(path.join(__dirname, 'html/form.html'))
 });
 
 app.get('/delete/:id', (req, res) => {

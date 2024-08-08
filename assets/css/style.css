@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.namebox,.emailbox{
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.namebox .boxgap{
+  margin-left: 5px;
+}
+
+.emailbox .boxgap{
+  margin-left: 5px;
+}
+
+#errorname{
+  margin: 0;
+}
+#erroremail{
+  margin: 0;
+}
