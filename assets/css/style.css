@@ -7,9 +7,17 @@
   margin-top: 0;
 }
 
-.namebox:first-child{
-  margin-right: 5px;
+.namebox .boxgap{
+  margin-left: 5px;
 }
-.emailbox:first-child{
-  margin-right: 5px;
+
+.emailbox .boxgap{
+  margin-left: 5px;
+}
+
+#errorname{
+  margin: 0;
+}
+#erroremail{
+  margin: 0;
 }
